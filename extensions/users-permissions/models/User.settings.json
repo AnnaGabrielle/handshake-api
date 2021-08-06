@@ -78,6 +78,11 @@
       "collection": "knowledge",
       "via": "interesteds",
       "dominant": true
+    },
+    "skills": {
+      "collection": "skill",
+      "via": "users",
+      "dominant": true
     }
   }
 }

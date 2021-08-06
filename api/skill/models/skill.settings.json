@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "skills",
+  "info": {
+    "name": "Skill"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "soft",
+        "hard"
+      ]
+    },
+    "users": {
+      "via": "skills",
+      "plugin": "users-permissions",
+      "collection": "user"
+    }
+  }
+}

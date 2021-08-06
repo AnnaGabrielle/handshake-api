@@ -12,12 +12,20 @@ const buildInterests = (user) => {
   return user.interests.map(i => i.name);
 }
 
+const buildSkills = (user) => {
+  return user.skills.reduce((skills, skill) => {
+    skills[skill.type].push(skill.name);
+    return skills;
+  }, { soft: [], hard: [] })
+}
+
 const getUserInfo = async (user) => {
   const sanitizedUser = sanitizeEntity(user, { model: strapi.plugins['users-permissions'].models.user });
   const { id, email, firstName, lastName } = sanitizedUser;
   const currentJob = buildCurrentJob(sanitizedUser);
   const knowledges = buildKnowledges(sanitizedUser);
   const interests = buildInterests(sanitizedUser);
+  const skills = buildSkills(sanitizedUser);
 
   return {
     id,
@@ -27,6 +35,7 @@ const getUserInfo = async (user) => {
     currentJob,
     knowledges,
     interests,
+    skills
   }
 }
 
