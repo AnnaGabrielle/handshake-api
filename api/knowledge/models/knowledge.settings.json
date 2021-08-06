@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "knowledges",
+  "info": {
+    "name": "Knowledge"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "impulsioners": {
+      "via": "knowledges",
+      "plugin": "users-permissions",
+      "collection": "user"
+    },
+    "interesteds": {
+      "via": "interests",
+      "plugin": "users-permissions",
+      "collection": "user"
+    }
+  }
+}

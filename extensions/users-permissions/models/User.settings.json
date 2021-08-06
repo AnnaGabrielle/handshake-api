@@ -67,6 +67,17 @@
     },
     "current_job": {
       "model": "job"
+    },
+    "knowledges": {
+      "columnName": "knowledge",
+      "collection": "knowledge",
+      "via": "impulsioners",
+      "dominant": true
+    },
+    "interests": {
+      "collection": "knowledge",
+      "via": "interesteds",
+      "dominant": true
     }
   }
 }

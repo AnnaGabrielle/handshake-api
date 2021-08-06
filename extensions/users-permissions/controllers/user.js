@@ -1,17 +1,32 @@
 const { sanitizeEntity } = require('strapi-utils');
 
+const buildCurrentJob = (user) => {
+  return user.current_job ? user.current_job.name : null;
+}
+
+const buildKnowledges = (user) => {
+  return user.knowledges.map(k => k.name);
+}
+
+const buildInterests = (user) => {
+  return user.interests.map(i => i.name);
+}
+
 const getUserInfo = async (user) => {
   const sanitizedUser = sanitizeEntity(user, { model: strapi.plugins['users-permissions'].models.user });
-  console.log(sanitizedUser);
   const { id, email, firstName, lastName } = sanitizedUser;
-  const currentJob = sanitizedUser.current_job;
+  const currentJob = buildCurrentJob(sanitizedUser);
+  const knowledges = buildKnowledges(sanitizedUser);
+  const interests = buildInterests(sanitizedUser);
 
   return {
     id,
     email,
     firstName,
     lastName,
-    currentJob: currentJob.name
+    currentJob,
+    knowledges,
+    interests,
   }
 }
 
