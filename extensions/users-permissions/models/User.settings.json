@@ -64,6 +64,9 @@
     },
     "lastName": {
       "type": "string"
+    },
+    "current_job": {
+      "model": "job"
     }
   }
 }

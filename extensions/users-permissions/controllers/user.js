@@ -1,13 +1,17 @@
 const { sanitizeEntity } = require('strapi-utils');
 
-const getUserInfo = (user) => {
+const getUserInfo = async (user) => {
   const sanitizedUser = sanitizeEntity(user, { model: strapi.plugins['users-permissions'].models.user });
+  console.log(sanitizedUser);
   const { id, email, firstName, lastName } = sanitizedUser;
+  const currentJob = sanitizedUser.current_job;
+
   return {
     id,
     email,
     firstName,
     lastName,
+    currentJob: currentJob.name
   }
 }
 
@@ -26,6 +30,6 @@ module.exports = {
       entities = await strapi.plugins['users-permissions'].services.user.fetchAll(ctx.query);
     }
 
-    return entities.map(entity => getUserInfo(entity));
+    return await Promise.all(entities.map(entity => getUserInfo(entity)));
   },
 };
