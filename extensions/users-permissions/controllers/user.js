@@ -4,6 +4,10 @@ const buildCurrentJob = (user) => {
   return user.current_job ? user.current_job.name : null;
 }
 
+const buildCurrentCompany = (user) => {
+  return user.current_company ? user.current_company.name : null;
+}
+
 const buildKnowledges = (user) => {
   return user.knowledges.map(k => k.name);
 }
@@ -23,6 +27,7 @@ const getUserInfo = async (user) => {
   const sanitizedUser = sanitizeEntity(user, { model: strapi.plugins['users-permissions'].models.user });
   const { id, email, firstName, lastName } = sanitizedUser;
   const currentJob = buildCurrentJob(sanitizedUser);
+  const currentCompany = buildCurrentCompany(sanitizedUser);
   const knowledges = buildKnowledges(sanitizedUser);
   const interests = buildInterests(sanitizedUser);
   const skills = buildSkills(sanitizedUser);
@@ -33,9 +38,10 @@ const getUserInfo = async (user) => {
     firstName,
     lastName,
     currentJob,
+    currentCompany,
     knowledges,
     interests,
-    skills
+    skills,
   }
 }
 

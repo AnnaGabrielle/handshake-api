@@ -83,6 +83,9 @@
       "collection": "skill",
       "via": "users",
       "dominant": true
+    },
+    "current_company": {
+      "model": "company"
     }
   }
 }
